@@ -12,7 +12,9 @@ jobs:
     env:
         ACTIONS_RUNNER_DEBUG: "true"
         ACTIONS_STEP_DEBUG: "true"
-    
+    permissions:
+      id-token: write
+      contents: read
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -23,10 +25,11 @@ jobs:
         terraform_version: 1.11.2
 
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: "arn:aws:iam::481509955802:role/sre-githubactions-deployments-oidc-poc"
         aws-region: us-east-1
+        role-to-assume: "arn:aws:iam::481509955802:role/sre-githubactions-deployments-oidc-poc"
+        role-session-name: myGitHubActions
 
     - name: Terraform Init
       run: terraform init
