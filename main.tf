@@ -1,10 +1,35 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
+}
+
+locals {
+  ami_id = var.ec2_ami_id != null ? var.ec2_ami_id : data.aws_ami.example.id
+}
+
+data "aws_ami" "example" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-*-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
+  owners = ["099720109477"] # Canonical
 }
 
 resource "aws_instance" "example" {
-  ami           = "ami-08b5b3a93ed654d19"  # An example Amazon Linux 2 AMI for us-east-1
-  instance_type = "t3.medium"
+  ami           = local.ami_id
+  instance_type = "t3.micro"
   tags = {
     Name = "GitHubActionsEC2Example"
   }
