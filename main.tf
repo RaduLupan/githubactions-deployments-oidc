@@ -32,6 +32,6 @@ resource "aws_instance" "example" {
   instance_type = "t3.micro"
   tags = {
     Name = "GitHubActionsEC2Example"
-    change = "Prod1" 
+    change = "Develop1" 
   }
 }
