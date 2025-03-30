@@ -4,17 +4,19 @@ on:
   push:
     branches:
       - main
+      - develop
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
     env:
         ACTIONS_RUNNER_DEBUG: "true"
         ACTIONS_STEP_DEBUG: "true"
+    # These permissions are needed to interact with GitHub’s OIDC Token endpoint.
     permissions:
       id-token: write
       contents: read
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -28,7 +30,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-region: us-east-1
-        role-to-assume: "arn:aws:iam::481509955802:role/sre-githubactions-deployments-oidc-poc"
+        role-to-assume: ${{ github.ref == 'refs/heads/main' && 'arn:aws:iam::481509955802:role/sre-githubactions-deployments-oidc-poc' || github.ref == 'refs/heads/develop' && 'arn:aws:iam::504369049772:role/sre-githubactions-deployments-oidc-poc' }}
         role-session-name: myGitHubActions
 
     - name: Terraform Init
