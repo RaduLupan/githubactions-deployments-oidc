@@ -20,7 +20,12 @@ OIDC offers a more secure and streamlined approach. By leveraging OIDC, GitHub A
 Follow these steps to deploy the example Terraform configurations using GitHub Actions and OIDC:
 
 1.  **Deploy the CloudFormation Template:**
-    * Deploy the CloudFormation template located here: [https://github.com/RaduLupan/configure-aws-credentials/blob/main/examples/federated-setup/github-actions-oidc-federation-and-role.yml](https://github.com/RaduLupan/configure-aws-credentials/blob/main/examples/federated-setup/github-actions-oidc-federation-and-role.yml)
+    * Deploy the CloudFormation template located here: [github-actions-oidc-federation-and-role.yml](https://github.com/RaduLupan/configure-aws-credentials/blob/main/examples/federated-setup/github-actions-oidc-federation-and-role.yml)
     * This template will create an OIDC-based IAM provider and corresponding roles in both your AWS Dev and AWS Prod accounts.
-    * Make sure you deploy this template into both AWS accounts you want to deploy to.
+    * Make sure you deploy this template into both AWS accounts you want to deploy to specifying the main branch for deploying to Prod account and develop to Dev account.
 
+2.  **Configure IAM Role ARNs in GitHub Actions Workflow:**
+    * In the `deploy.yml` workflow file, locate line 33.
+    * Replace the `<IAM_Role_ARN_for_Prod_Account>` placeholder with the ARN of the IAM role created in your AWS Prod account.
+    * Replace the `<IAM_Role_for_Dev_Account>` placeholder with the ARN of the IAM role created in your AWS Dev account.
+    * **Important:** The workflow is configured to assume the Prod account role when pushing to the `main` branch and the Dev account role when pushing to the `develop` branch.
