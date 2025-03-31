@@ -26,8 +26,8 @@ Follow these steps to deploy the example Terraform configurations using GitHub A
 
 2.  **Configure IAM Role ARNs in GitHub Actions Workflow:**
     * In the `deploy.yml` workflow file, locate line 33.
-    * Replace the `<IAM_Role_ARN_for_Prod_Account>` placeholder with the ARN of the IAM role created in your AWS Prod account.
-    * Replace the `<IAM_Role_for_Dev_Account>` placeholder with the ARN of the IAM role created in your AWS Dev account.
+    * Replace the `<IAM_Role_ARN_Prod_Account>` placeholder with the ARN of the IAM role created in your AWS Prod account.
+    * Replace the `<IAM_Role_ARN_Dev_Account>` placeholder with the ARN of the IAM role created in your AWS Dev account.
     * **Important:** The workflow is configured to assume the Prod account role when pushing to the `main` branch and the Dev account role when pushing to the `develop` branch.
 
 3.  **Deploy to the Dev Environment:**
@@ -35,3 +35,13 @@ Follow these steps to deploy the example Terraform configurations using GitHub A
     * Make a change to the `main.tf` file. For example, add a tag: `change = "change1"` to the EC2 instance resource.
     * Commit and push your changes to the `develop` branch: `git push origin develop`
     * Observe the GitHub Actions workflow executing and deploying your changes to the Dev AWS account.
+
+4. **Deploy to the Prod Environment:**
+    * Checkout the `main` branch: `git checkout main`
+    * Make a change to the `main.tf` file. For example, add a tag: `change = "change2"` to the EC2 instance resource.
+    * Commit and push your changes to the `main` branch: `git push origin main`
+    * Observe the GitHub Actions workflow executing and deploying your changes to the Prod AWS account.
+    * **Important:** You can also merge a Pull Request from `develop` to `main` to deploy to the Prod AWS account.
+
+**References**
+[Configuring OpenID Connect in Amazon Web Services](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)
