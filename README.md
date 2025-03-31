@@ -1,4 +1,4 @@
-# githubactions-deployments-oidc
+## githubactions-deployments-oidc
 
 This repository demonstrates how to deploy Terraform configurations to multiple AWS accounts using GitHub Actions and [OpenID Connect (OIDC)](https://www.microsoft.com/en-us/security/business/security-101/what-is-openid-connect-oidc) for short-lived, secure credentials.
 
