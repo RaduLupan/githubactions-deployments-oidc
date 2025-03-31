@@ -26,8 +26,8 @@ Follow these steps to deploy the example Terraform configurations using GitHub A
 
 2.  **Configure IAM Role ARNs in GitHub Actions Workflow:**
     * In the `deploy.yml` workflow file, locate line 33.
-    * Replace the `<IAM_Role_ARN_Prod_Account>` placeholder with the ARN of the IAM role created in your AWS Prod account.
-    * Replace the `<IAM_Role_ARN_Dev_Account>` placeholder with the ARN of the IAM role created in your AWS Dev account.
+    * Replace the `arn:aws:iam::PRODACCTID12:role/githubactions-deployments-oidc-PROD` placeholder with the ARN of the IAM role created in your AWS Prod account.
+    * Replace the `arn:aws:iam::DEVACCTID123:role/githubactions-deployments-oidc-DEV` placeholder with the ARN of the IAM role created in your AWS Dev account.
     * **Important:** The workflow is configured to assume the Prod account role when pushing to the `main` branch and the Dev account role when pushing to the `develop` branch.
 
 3.  **Deploy to the Dev Environment:**

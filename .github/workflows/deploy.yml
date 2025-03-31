@@ -30,7 +30,8 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-region: us-east-1
-        role-to-assume: ${{ github.ref == 'refs/heads/main' && 'arn:aws:iam::481509955802:role/sre-githubactions-deployments-oidc-poc' || github.ref == 'refs/heads/develop' && 'arn:aws:iam::504369049772:role/sre-githubactions-deployments-oidc-poc' }}
+        # Replace the sample AWS Account IDs and IAM role names with your own
+        role-to-assume: ${{ github.ref == 'refs/heads/main' && 'arn:aws:iam::PRODACCTID12:role/githubactions-deployments-oidc-PROD' || github.ref == 'refs/heads/develop' && 'arn:aws:iam::DEVACCTID123:role/githubactions-deployments-oidc-DEV' }}
         role-session-name: myGitHubActions
 
     - name: Terraform Init
