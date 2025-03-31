@@ -29,3 +29,9 @@ Follow these steps to deploy the example Terraform configurations using GitHub A
     * Replace the `<IAM_Role_ARN_for_Prod_Account>` placeholder with the ARN of the IAM role created in your AWS Prod account.
     * Replace the `<IAM_Role_for_Dev_Account>` placeholder with the ARN of the IAM role created in your AWS Dev account.
     * **Important:** The workflow is configured to assume the Prod account role when pushing to the `main` branch and the Dev account role when pushing to the `develop` branch.
+
+3.  **Deploy to the Dev Environment:**
+    * Checkout the `develop` branch: `git checkout develop`
+    * Make a change to the `main.tf` file. For example, add a tag: `change = "change1"` to the EC2 instance resource.
+    * Commit and push your changes to the `develop` branch: `git push origin develop`
+    * Observe the GitHub Actions workflow executing and deploying your changes to the Dev AWS account.
