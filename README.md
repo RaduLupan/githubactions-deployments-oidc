@@ -2,7 +2,7 @@
 
 This repository demonstrates how to deploy Terraform configurations to multiple AWS accounts using GitHub Actions and [OpenID Connect (OIDC)](https://www.microsoft.com/en-us/security/business/security-101/what-is-openid-connect-oidc) for short-lived, secure credentials.
 
-**Why OIDC and Short-Lived Credentials?**
+## Why OIDC and Short-Lived Credentials?
 
 Traditional methods of authenticating with AWS often involve creating IAM users and access keys. These keys are long-lived and require regular rotation to maintain security, typically every 90 days or less. This process can be cumbersome and prone to errors.
 
@@ -15,7 +15,7 @@ OIDC offers a more secure and streamlined approach. By leveraging OIDC, GitHub A
 * **Reduced Risk:** Eliminates the risk of accidentally exposing long-lived credentials.
 * **Centralized Identity Management:** Leverage GitHub's identity provider for secure access.
 
-**Quick Start**
+## Quick Start
 
 Follow these steps to deploy the example Terraform configurations using GitHub Actions and OIDC:
 
@@ -43,5 +43,6 @@ Follow these steps to deploy the example Terraform configurations using GitHub A
     * Observe the GitHub Actions workflow executing and deploying your changes to the Prod AWS account.
     * **Important:** You can also merge a Pull Request from `develop` to `main` to deploy to the Prod AWS account.
 
-**References**
+## References
+
 [Configuring OpenID Connect in Amazon Web Services](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)
